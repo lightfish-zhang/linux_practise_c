@@ -54,6 +54,6 @@ int main(void)
 	if(wait(&status) != pid)
 		perror("wait error");
 
-	pr_exit(statu);
+	pr_exit(status);
 	return 0;
 }
