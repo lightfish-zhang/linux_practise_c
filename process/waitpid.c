@@ -12,6 +12,8 @@ int main(void)
 		perror("fork error.\n");
 		exit(0);
 	}
+	else if(0 < pid)
+		printf("first child, pid = %d\n", pid);
 	else if(0 == pid)
 	{
 		if((pid = fork()) < 0)
@@ -20,7 +22,10 @@ int main(void)
 			exit(0);
 		}
 		else if(pid > 0)
+		{
+			printf("second child, pid = %d, parent pid = %d\n", pid, getpid());
 			exit(0);
+		}
 
 		sleep(2);
 		printf("second child, parent pid = %d\n", getppid());
@@ -32,6 +37,8 @@ int main(void)
 		perror("waitpid error.\n");
 		exit(0);
 	}
+	else
+		printf("pid = %d thread dead\n", pid);
 
 	return 0;
 }
