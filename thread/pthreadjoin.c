@@ -16,8 +16,8 @@ int main()
 	pthread_create(&thread1, NULL, (void *)(&print_msg), (void *)msg1);
 	pthread_create(&thread2, NULL, (void *)(&print_msg), (void *)msg2);
 
-	pthread_join(thread1, &retval);
 	pthread_join(thread2, &retval);
+	pthread_join(thread1, &retval);
 	return 0;
 }
 
