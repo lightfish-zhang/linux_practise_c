@@ -43,7 +43,7 @@ int main(void)
 	pthread_t tid1,tid2; 
 	pthread_key_create(&key, echomsg); // 创建
 
-	//一般情况下，线程在主函数创建，函数分配在栈区，遵循先进后出规则，先创建后运行。
+	//一般情况下，线程在主函数创建，函数分配在栈区，遵循先进后出规则，先创建后运行，但有时先后顺序没规律
 	pthread_create(&tid1, NULL, child1, NULL); 
 	pthread_create(&tid2, NULL, child2, NULL); 
 	pthread_join(tid1, NULL);
