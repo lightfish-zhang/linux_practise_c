@@ -23,10 +23,20 @@ void init(struct producers * b)
 
 void put(struct producers * b, int data)
 {
-	pthread_mutex_lock(&b->lock);
-	
-	while((b->writepos +1) % BUFFER_SIZE == b->readpos)
-		pthread_cond_wait(&b->notfull, &b->lock);
+	//two while do the same thing,the first is better
+
+//	pthread_mutex_lock(&b->lock);
+//	while((b->writepos +1) % BUFFER_SIZE == b->readpos)
+//		pthread_cond_wait(&b->notfull, &b->lock);
+
+	while(1){
+		pthread_mutex_lock(&b->lock);
+		if((b->writepos +1) % BUFFER_SIZE == b->readpos){
+			pthread_mutex_unlock(&b->lock);
+		}else{
+			break;
+		}
+	}
 
 	b->buffer[b->writepos] = data;
 	b->writepos ++;
