@@ -23,7 +23,7 @@ void init(struct producers * b)
 
 void put(struct producers * b, int data)
 {
-	//two while do the same thing,the first is better
+	//two while do the same thing,the first is better, it will sleep, the second will circular and take up cpu
 
 //	pthread_mutex_lock(&b->lock);
 //	while((b->writepos +1) % BUFFER_SIZE == b->readpos)
