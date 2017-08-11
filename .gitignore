@@ -35,3 +35,6 @@ tags
 
 # tmp
 *.swp
+
+# ide
+.vscode
