@@ -53,6 +53,7 @@ int main(int argc, char **argv) {
       exit(1);
     }
     if(0 == pid){
+      close(listenfd);
       pid = getpid();
       while(1){
         n = recv(connfd, buff, MAXLINE, 0);
@@ -66,8 +67,8 @@ int main(int argc, char **argv) {
         }
       }
     }else{
-      printf("fork, pid is: %d\n", pid);
       close(connfd);
+      printf("fork, pid is: %d\n", pid);
     }
 
   }
